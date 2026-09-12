@@ -47,7 +47,7 @@ export async function getAllNewsroomArticles(): Promise<NewsroomArticle[]> {
     if (hasStatus(error) && error.status === 404) {
       return []
     }
-    throw new Error('Failed to fetch newsroom articles')
+    throw new Error('Failed to fetch newsroom articles', { cause: error })
   }
 }
 
@@ -66,7 +66,7 @@ export async function getNewsroomArticleBySlug(
     if (hasStatus(error) && error.status === 404) {
       return null
     }
-    throw new Error('Failed to fetch newsroom article')
+    throw new Error('Failed to fetch newsroom article', { cause: error })
   }
 }
 
