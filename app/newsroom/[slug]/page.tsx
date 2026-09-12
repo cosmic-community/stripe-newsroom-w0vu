@@ -16,8 +16,15 @@ interface ArticlePageProps {
 }
 
 export async function generateStaticParams() {
-  const articles = await getAllNewsroomArticles()
-  return articles.map((article) => ({ slug: article.slug }))
+  // A CMS hiccup at build time should not fail the whole build. Pages still
+  // render on demand and revalidate, so fall back to an empty param list.
+  try {
+    const articles = await getAllNewsroomArticles()
+    return articles.map((article) => ({ slug: article.slug }))
+  } catch (error) {
+    console.error('generateStaticParams: failed to load articles', error)
+    return []
+  }
 }
 
 export async function generateMetadata({
