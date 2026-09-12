@@ -7,8 +7,16 @@ interface CosmicClientWithPreview {
 }
 
 export async function getCosmic(): Promise<CosmicClientWithPreview> {
-  const cookieStore = await cookies()
-  const previewToken = cookieStore.get('cosmic_preview')?.value || null
+  // cookies() is only available inside a request scope. During static
+  // generation (generateStaticParams, build-time prerender) it throws, so we
+  // fall back to a plain published-content client instead of failing the build.
+  let previewToken: string | null = null
+  try {
+    const cookieStore = await cookies()
+    previewToken = cookieStore.get('cosmic_preview')?.value || null
+  } catch {
+    previewToken = null
+  }
 
   const cosmic = createBucketClient({
     bucketSlug: process.env.COSMIC_BUCKET_SLUG as string,
