@@ -1,0 +1,4 @@
+Protocol: CAP/1.0
+Name: Leo, Customer Support Agent
+CAP: https://dapi.cosmicjs.com/cap/v1/ck_d779d834eff9a11ea628c2093d2e63e2
+Spec: https://conciergeprotocol.org/cap.txt
