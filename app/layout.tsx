@@ -39,6 +39,11 @@ export default function RootLayout({
         />
         <script src="/dashboard-console-capture.js" />
               <script defer src="https://insights.cosmicinsights.dev/script.js" data-project="6aa4d7aaa994e35dd25c853c"></script>
+        <script
+          src="https://www.cosmicjs.com/agent.js"
+          data-key="pk_228c656852f85ec8133bea3da9f8c8b3"
+          async
+        ></script>
       </head>
       <body className="font-sans bg-white text-navy-900 antialiased">
         <Header />
